@@ -2,6 +2,7 @@ class StockPrice(object):
 
     def __init__(self):
         self.prices = {}
+        self.highest = 0
 
     def update(self, timestamp, price):
         """
@@ -10,38 +11,30 @@ class StockPrice(object):
         :rtype: None
         """
         self.prices[timestamp] = price
+        self.highest = max(self.highest, timestamp)
 
     def current(self):
         """
         :rtype: int
         """
-        k = list(self.prices.keys())
-        k.sort()
-        last = self.prices[k[-1]]
-        return last
+        return self.prices[self.highest]
         
 
     def maximum(self):
         """
         :rtype: int
         """
-        k = self.prices.values()
-        curr = k[0]
-        for price in self.prices.values():
-            if price > curr:
-                curr = price
-        return curr
+        val = list(self.prices.values())
+        k = list(self.prices.keys())[list(self.prices.values()).index(max(val))]
+        return self.prices[k]
 
     def minimum(self):
         """
         :rtype: int
         """
-        k = self.prices.values()
-        curr = k[0]
-        for price in self.prices.values():
-            if price < curr:
-                curr = price
-        return curr
+        val = list(self.prices.values())
+        k = list(self.prices.keys())[list(self.prices.values()).index(min(val))]
+        return self.prices[k]
 
 
 # Your StockPrice object will be instantiated and called as such:
