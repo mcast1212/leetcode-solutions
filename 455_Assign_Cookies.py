@@ -11,6 +11,7 @@ class Solution(object):
         for j in range(len(s)):
             for i in range(len(g)):
                 if s[j]>=g[i]:
+                    del g[i]
                     num = num + 1
                     break
         return num
