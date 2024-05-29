@@ -8,10 +8,11 @@ class Solution(object):
         g.sort()
         s.sort()
         num = 0
-        for j in range(len(s)):
-            for i in range(len(g)):
-                if s[j]>=g[i]:
-                    del g[i]
-                    num = num + 1
-                    break
+        j = 0
+        for i in range(len(s)):
+            if s[i]>=g[j]:
+                num = num + 1
+                j = j + 1
+            if j == len(g):
+                break
         return num
